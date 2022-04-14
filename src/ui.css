@@ -1,0 +1,256 @@
+*
+  {
+  margin: 0px;
+  padding:0;
+  color:#000000;
+  }
+html
+  {
+  background-color:#ffffff;
+  }
+body
+  {
+  font: 10pt/14pt Verdana, Arial, Helvetica, sans-serif;
+  margin: 10px 10px 10px 30px;
+  line-height:100%;
+  }
+table
+  {
+  border: none 0px;
+  }
+table.border
+  {
+  color: #000000;
+  border: 2px;
+  padding: 10px;
+  }
+p
+  {
+  margin: 0 0 4px;
+  line-height: 1.35;
+  }
+em
+  {
+  font-style:italic;
+  }
+h1
+  {
+  color: #08427c;;
+  margin: 10px 0 20px 0;
+  padding: 0 0 3px;
+  border-bottom: 1px solid #cdcdcd;
+  font: 20pt Verdana, Arial, Helvetica, sans-serif;
+  }
+h1.location
+  {
+  color: #08427c;;
+  margin: 10px 0 20px 0;
+  padding: 0 0 3px;
+  border: none;
+  font: 18pt Verdana, Arial, Helvetica, sans-serif;
+  }
+h1 a
+  {
+  text-decoration:none !important;
+  }
+h2
+  {
+  color: #08427c;;
+  margin: 5px 0;
+  padding: 0 0 3px;
+  border: 0;
+  font: 16pt Verdana, Arial, Helvetica, sans-serif;
+  }
+h3
+  {
+  color: #08427c;;
+  margin:8px 0;
+  padding: 0 0 2px;
+  font: 14pt Verdana, Arial, Helvetica, sans-serif;
+  }
+ol
+  {
+  color: #000000;
+  font: 8pt/12pt Verdana, Arial, Helvetica, sans-serif;
+  background-color: transparent;
+  margin:15px 0 5px 25px;
+  }
+ol li
+  {
+   margin-bottom: 4px;
+  }
+ol li ol
+  {
+  list-style-type:lower-alpha;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  }
+ol li ul
+  {
+  margin-top: 4px;
+  margin-bottom: 8px;
+  }
+ol li ol li ol
+  {
+  list-style-type:lower-roman;
+  }
+ol li ol li ol li ol
+  {
+  list-style-type:upper-alpha;
+  }
+ul
+  {
+  list-style-type: disc;
+  margin-left: 20px;
+  margin-bottom: 5px;
+  }
+ul li
+  {
+  }
+ul.empty
+  {
+  list-style:none;
+  }
+img
+  {
+  border:none;
+  }
+
+#error
+  {
+  color: #ff6666;
+  font: bold 12pt Verdana, Arial, Helvetica, sans-serif;
+  }
+
+span.clear
+  {
+  clear: right;
+  display: block;
+  }
+
+.choose-password-file
+  {
+  font: normal 12pt Verdana, Arial, Helvetica, sans-serif;
+  }
+
+.password-dialog-title
+  {
+  font: bold 16pt Verdana, Arial, Helvetica, sans-serif;
+  color: #000033;
+  }
+
+table.passwords-messages-container
+  {
+  margin-left: 10px;
+  border: 1px solid #000000;
+  }
+
+tr.passwords-messages-container
+  {
+  margin-top: 20px;
+  }
+
+td.passwords-container
+  {
+  margin-left: 20px;
+  }
+
+table.password-change-table
+  {
+  padding-left: 10px;
+  width: 420px;
+  padding-right: 10px;
+  }
+
+tr.password-change-row
+  {
+  vertical-align: top;
+  }
+
+td.password-change-label
+  {
+  padding-top: 9px;
+  padding-right: 10px;
+  text-align: right;
+  vertical-align: top;
+  }
+
+td.password-change-value
+  {
+  padding-top: 10px;
+  padding-left: 10px;
+  text-align: left;
+  vertical-align: top;
+  }
+
+.user-select-value
+  {
+  font: bold 12pt Verdana, Arial, Helvetica, sans-serif;
+  padding-left: 10px;
+  text-align: left;
+  vertical-align: top;
+  }
+
+
+td.messages-container-cell
+  {
+  text-align: left;
+  vertical-align: top;
+  width: 100%;
+  padding: 10px;
+  }
+
+span.password-change-button
+  {
+  padding: 30px 0px 20px 0px;
+  }
+
+a.password-change-button
+  {
+  border: 1px solid #333333;
+  border-radius: 5px;
+  background-color: #66ff66;
+  font: bold 12pt Verdana, Arial, Helvetica, sans-serif;
+  text-align: center;
+  vertical-align: middle;
+  padding: 4px 20px 4px 20px;
+  text-decoration: none;
+  }
+
+div.password-action
+  {
+  background-color:#99ffff;
+  display: inline-block;
+  float: left;
+  text-align: left;
+  vertical-align: top;
+  min-width: 400px;
+  padding: 0px;
+  height: 200px;
+  }
+
+div.password-error
+  {
+  display: inline-block;
+  float: left;
+  background-color:#ffcccc;
+  text-align: left;
+  vertical-align: top;
+  min-width: 380px;
+  padding: 20px 20px 20px 20px;
+  margin-right: 10px;
+  height: 160px;
+  }
+
+.admin-dialog-title
+  {
+  display: block;
+  clear: both;
+  font: normal 12pt Verdana, Arial, Helvetica, sans-serif;
+  color: #000033;
+  }
+
+.change-password-label
+  {
+  vertical-align: top;
+  }

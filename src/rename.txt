@@ -1,0 +1,9 @@
+s/IsValidUserID(/StringMatchesUserIDFormat\(/g
+s/IsValidUser(/HTPasswdValidUser\(/g
+s/AddUser(/HTPasswdAddUser\(/g
+s/DelUser(/HTPasswdRemoveUser\(/g
+s/ResetPassword(/HTPasswdResetPassword\(/g
+s/CheckPassword(/HTPasswdCheckPassword\(/g
+s/ChangePassword(/HTPasswdChangePassword\(/g
+s/FindPasswordFile(/HTPasswdFileFromID\(/g
+s/IsAdminUser(/HTPasswdIsUserAdmin\(/g

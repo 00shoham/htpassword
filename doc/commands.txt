@@ -1,0 +1,22 @@
+Add user:
+echo passwordValue | htpasswd -iB ../doc/sample.htpasswd newuser
+>> Adding password for user user
+
+Update password for existing user:
+echo passwordValue | htpasswd -iB ../doc/sample.htpasswd user
+>> Updating password for user user
+(note same as updating!)
+
+Verify password:
+echo passwordValue | htpasswd -iv ../doc/sample.htpasswd newuser
+>> Password for user newuser correct.
+>> password verification failed
+
+Remove user:
+htpasswd -D ../doc/sample.htpasswd newuser
+>> Deleting password for user newuser
+>> User newuser not found
+
+List users:
+cat sample.htpasswd | sed 's/:.*//'
+

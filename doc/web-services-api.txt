@@ -1,0 +1,119 @@
+Functions exposed by the API:
+
+  File/List
+
+    INPUT: { }
+
+   OUTPUT: { "result":"success", "code": 0,
+             "FILES": [
+               { "ID":"one", "DESCRIPTION":"The main file" },
+               { "ID":"two", "DESCRIPTION":"Subsidiary one" }
+               ]
+           }
+
+  Password/CheckStrength
+
+    INPUT: { "ID":"one",
+             "USERID":"bob",
+             "PASSWORD":"hello" }
+
+   OUTPUT: { "result":"success", "code": 0 }
+
+   OUTPUT: { "result":"error", "code": -1,
+             "CONSTRAINTS": [
+               "Too short",
+               "Not enough digits",
+               "Contains a dictionary word"
+               ]
+           }
+
+  Password/CheckPassword
+
+    INPUT: { "ID":"main",
+             "USERID":"bob",
+             "PASSWORD":"hello" }
+
+   OUTPUT: { "result":"success", "code": 0 }
+   OUTPUT: { "result":"Incorrect password", "code": 0 }
+   OUTPUT: { "result":"No such password file", "code": 0 }
+   OUTPUT: { "result":"No such user", "code": 0 }
+
+  Password/ChangePassword
+
+    INPUT: { "ID":"main",
+             "USERID":"bob",
+             "OLDP":"hello" }
+             "NEWP":"there" }
+
+   OUTPUT: { "result":"success", "code": 0 }
+   OUTPUT: { "result":"Wrong old password", "code": -1 }
+   OUTPUT: { "result":"New password not acceptable", "code": -2 }
+   OUTPUT: { "result":"No such user", "code": -3 }
+   OUTPUT: { "result":"No such password file", "code": -4 }
+   OUTPUT: { "result":"Write problem", "code": -5 }
+
+  Password/ResetPassword
+
+    INPUT: { "ID":"main",
+             "USERID":"bob",
+             "PASSWORD":"there" }
+
+   OUTPUT: { "result":"success", "code": 0 }
+   OUTPUT: { "result":"Not an administrator", "code": -1 }
+   OUTPUT: { "result":"New password not acceptable", "code": -2 }
+   OUTPUT: { "result":"No such user", "code": -3 }
+   OUTPUT: { "result":"No such password file", "code": -4 }
+   OUTPUT: { "result":"Write problem", "code": -5 }
+
+  User/Add
+
+    INPUT: { "ID":"main",
+             "USERID":"bob",
+             "PASSWORD":"there" }
+
+   OUTPUT: { "result":"success", "code": 0 }
+   OUTPUT: { "result":"Not an administrator", "code": -1 }
+   OUTPUT: { "result":"New password not acceptable", "code": -2 }
+   OUTPUT: { "result":"User already exists", "code": -3 }
+   OUTPUT: { "result":"No such password file", "code": -4 }
+   OUTPUT: { "result":"Write problem", "code": -5 }
+
+  User/Delete
+
+    INPUT: { "ID":"main",
+             "USERID":"bob" }
+
+   OUTPUT: { "result":"success", "code": 0 }
+   OUTPUT: { "result":"Not an administrator", "code": -1 }
+   OUTPUT: { "result":"New password not acceptable", "code": -2 }
+   OUTPUT: { "result":"User does not exist", "code": -3 }
+   OUTPUT: { "result":"No such password file", "code": -4 }
+   OUTPUT: { "result":"Write problem", "code": -5 }
+
+  User/List
+
+    INPUT: { "ID":"main" }
+
+   OUTPUT: { "result":"success", "code": 0,
+             "USERS": [
+               { "ID":"bob" },
+               { "ID":"mary" }
+               ]
+           }
+   OUTPUT: { "result":"Not an administrator", "code": -1 }
+   OUTPUT: { "result":"No such password file", "code": -4 }
+
+  User/WhoAmI
+
+    INPUT: { }
+
+   OUTPUT: { "result":"success", "code": 0,
+             "USERID": "bob" }
+
+  User/IsAdmin
+
+    INPUT: { "ID":"one" }
+
+   OUTPUT: { "result":"success", "code": 0,
+             "ISADMIN": "true" }
+
