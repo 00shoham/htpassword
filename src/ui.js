@@ -398,6 +398,13 @@ function CheckPasswords( context, userID, oldPW, newPW, againPW )
       DisplayPasswordError( "Passwords do not match" );
       return -7;
       }
+
+    var args = { "ID":passwordFileID,
+                 "USERID":userID,
+                 "PASSWORD":againPW
+               };
+    CallAPIFunctionASync( "password", "checkstrength", args,
+                          OnLoadStrengthCheck, sampleonerror );
     }
 
   return 0;

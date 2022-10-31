@@ -6,15 +6,19 @@ BIN=\
 
 all: $(BIN)
 
-LUADIR=/usr/include/lua5.3
+LUADIR := $(shell /usr/bin/find /usr/include -type d -name 'lua*')
+LUAPARTS := $(subst /, ,$(LUADIR))
+LUAVER := $(lastword $(LUAPARTS))
+
 UTILDIR=../../idanlib/src
 UTILSLIB=$(UTILDIR)/utils.a
 INCLUDES=-I$(LUADIR) -I$(UTILDIR)
 
 CC=gcc
 CFLAGS=-Wall -O2 -g $(INCLUDES)
-LIBS=-lm -lpthread -luuid
+LIBS=-lm -lpthread -luuid -lcurl
 SHAREDOBJ=\
+  hibp.o\
   config.o\
   api.o\
   password-history.o\

@@ -12,5 +12,6 @@ typedef struct _config _CONFIG;
 #include "password-history.h"
 #include "password-policy.h"
 #include "api.h"
+#include "hibp.h"
 
 #endif

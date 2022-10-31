@@ -24,6 +24,7 @@ typedef struct _passwordPolicy
   int minPunct;
   int maxPunct;
   int requireMixedCase;
+  char* hibpAPIKey;
   _DICTIONARY_FILE* dictionaries;
   } _PASSWORD_POLICY;
 

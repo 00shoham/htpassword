@@ -212,6 +212,13 @@ void ProcessConfigLine( char* ptr, char* equalsChar, _CONFIG* config )
       config->passwordFiles->policy.dictionaries =
         AddDictionaryFile( value, config->passwordFiles->policy.dictionaries );
       }
+    else if( strcasecmp( variable, "HIBP_KEY" )==0 )
+      {
+      if( config->passwordFiles==NULL )
+        Error( "%s must follow PASSWORD_FILE", variable );
+      FreeIfAllocated( &(config->passwordFiles->policy.hibpAPIKey) );
+      config->passwordFiles->policy.hibpAPIKey = strdup( variable );
+      }
     else if( strcasecmp( variable, "HISTORY_FILE" )==0 )
       {
       if( config->passwordFiles==NULL )

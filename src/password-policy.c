@@ -186,6 +186,18 @@ int TestPasswordQuality( char* userID,
       }
     }
 
+  if( NOTEMPTY( proposedPassword )
+      && NOTEMPTY( policy->hibpAPIKey ) )
+    {
+    if( HaveIBeenPwned( policy->hibpAPIKey, proposedPassword )==0 )
+      {
+      --err;
+      char msg[BUFLEN];
+      snprintf( msg, sizeof(msg)-1, "This password has been COMPROMISED before!" );
+      messages = NewTagValue( "ERROR", msg, messages, 0 );
+      }
+    }
+
   end:
   *messagesPtr = messages;
   return err;
