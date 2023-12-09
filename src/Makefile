@@ -24,7 +24,6 @@ SHAREDOBJ=\
   api.o\
   password-history.o\
   password-file.o\
-  htpasswd-wrapper.o\
   password-policy.o
 
 SHAREDLIB=\

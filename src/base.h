@@ -8,7 +8,6 @@ typedef struct _config _CONFIG;
 
 #include "password-file.h"
 #include "config.h"
-#include "htpasswd-wrapper.h"
 #include "password-history.h"
 #include "password-policy.h"
 #include "api.h"

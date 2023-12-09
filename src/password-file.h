@@ -62,4 +62,7 @@ _PASSWORD_FILE* AddPasswordFile( char* id, _PASSWORD_FILE* list );
 _PASSWORD_FILE* HTPasswdFileFromID( _CONFIG* conf, char* id );
 int HTPasswdIsUserAdmin( _PASSWORD_FILE* pf, char* userID );
 
+_PASSWORD_FILE* AddPasswordFile( char* id, _PASSWORD_FILE* list );
+_PASSWORD_FILE* HTPasswdFileFromID( _CONFIG* conf, char* id );
+
 #endif

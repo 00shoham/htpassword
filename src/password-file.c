@@ -110,3 +110,34 @@ _PASSWORD_FILE* AddPasswordFile( char* id, _PASSWORD_FILE* list )
   return newp;
   }
 
+_PASSWORD_FILE* HTPasswdFileFromID( _CONFIG* conf, char* id )
+  {
+  if( EMPTY( id ) )
+    return NULL;
+  if( conf==NULL )
+    return NULL;
+
+  for( _PASSWORD_FILE* pf=conf->passwordFiles; pf!=NULL; pf=pf->next )
+    {
+    if( NOTEMPTY( pf->id ) && strcmp( pf->id, id )==0 )
+      return pf;
+    }
+
+  return NULL;
+  }
+
+int HTPasswdIsUserAdmin( _PASSWORD_FILE* pf, char* userID )
+  {
+  if( pf==NULL )
+    return -1;
+  if( EMPTY( userID ) )
+    return -2;
+
+  for( _ADMIN_USER* au = pf->admins; au!=NULL; au=au->next )
+    {
+    if( NOTEMPTY( au->id ) && strcmp( au->id, userID )==0 )
+      return 0;
+    }
+
+  return -3;
+  }
