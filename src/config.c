@@ -1,9 +1,21 @@
 #include "base.h"
 
+char defaultKey[] =
+  {
+  0xdb, 0xd2, 0x5a, 0x74, 0xc7, 0x44, 0x3b, 0x43,
+  0xd2, 0x24, 0xcb, 0xce, 0x63, 0x4a, 0xe5, 0x4d,
+  0x5d, 0x64, 0xd6, 0xcc, 0xcb, 0x97, 0x75, 0x2b,
+  0x95, 0xa8, 0x52, 0x85, 0xe6, 0xed, 0x32, 0xc1
+  };
+
 void SetDefaults( _CONFIG* config )
   {
   memset( config, 0, sizeof(_CONFIG) );
+  memcpy( config->key, defaultKey, AES_KEYLEN );
   config->userEnvVar = strdup( DEFAULT_USER_ENV_VAR );
+  config->sessionCookieName = strdup( COOKIE_ID );
+  config->authServiceUrl = strdup( DEFAULT_AUTH_URL );
+  config->urlEnvVar = strdup( DEFAULT_REQUEST_URI_ENV_VAR );
   }
 
 void FreeConfig( _CONFIG* config )
@@ -44,6 +56,9 @@ void FreeConfig( _CONFIG* config )
   FreeTagValue( config->list );
 
   FreeIfAllocated( &(config->userEnvVar) );
+  FreeIfAllocated( &(config->sessionCookieName) );
+  FreeIfAllocated( &(config->authServiceUrl) );
+  FreeIfAllocated( &(config->urlEnvVar) );
 
   free( config );
   }
@@ -248,6 +263,21 @@ void ProcessConfigLine( char* ptr, char* equalsChar, _CONFIG* config )
       FreeIfAllocated( &(config->userEnvVar) );
       config->userEnvVar = strdup( value );
       }
+    else if( strcasecmp( variable, "SESSION_COOKIE_NAME" )==0 )
+      {
+      FreeIfAllocated( &(config->sessionCookieName) );
+      config->sessionCookieName = strdup( value );
+      }
+    else if( strcasecmp( variable, "AUTHENTICATION_SERVICE_URL" )==0 )
+      {
+      FreeIfAllocated( &(config->authServiceUrl) );
+      config->authServiceUrl = strdup( value );
+      }
+    else if( strcasecmp( variable, "URL_ENV_VARIABLE" )==0 )
+      {
+      FreeIfAllocated( &(config->urlEnvVar) );
+      config->urlEnvVar = strdup( value );
+      }
     else
       {
       /* append this variable to our linked list, for future expansion */
@@ -308,6 +338,24 @@ void PrintConfig( FILE* f, _CONFIG* config )
       && strcmp( config->userEnvVar, DEFAULT_USER_ENV_VAR )!=0 )
     {
     fprintf( f, "USER_ENV_VARIABLE=%s\n", config->userEnvVar );
+    }
+
+  if( NOTEMPTY( config->sessionCookieName )
+      && strcmp( config->sessionCookieName, COOKIE_ID )!=0 )
+    {
+    fprintf( f, "SESSION_COOKIE_NAME=%s\n", config->sessionCookieName );
+    }
+
+  if( NOTEMPTY( config->authServiceUrl )
+      && strcmp( config->authServiceUrl, DEFAULT_AUTH_URL )!=0 )
+    {
+    fprintf( f, "SESSION_COOKIE_NAME=%s\n", config->authServiceUrl );
+    }
+
+  if( NOTEMPTY( config->urlEnvVar )
+      && strcmp( config->urlEnvVar, DEFAULT_REQUEST_URI_ENV_VAR )!=0 )
+    {
+    fprintf( f, "URL_ENV_VARIABLE=%s\n", config->urlEnvVar );
     }
   }
 

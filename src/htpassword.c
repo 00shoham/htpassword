@@ -28,7 +28,8 @@ int main( int argc, char** argv )
 
       inCGI = 2;
 
-      char* whoAmI = ExtractUserIDOrDie( cm_api, conf->userEnvVar );
+      /* char* whoAmI = ExtractUserIDOrDie( cm_api, conf->userEnvVar ); */
+      char* whoAmI = ExtractUserIDOrDieEx( cm_ui, NULL, NULL, NULL, NULL, conf->key );
 
       CallAPIFunction( conf, whoAmI, q+4 );
       fflush(stdout);
