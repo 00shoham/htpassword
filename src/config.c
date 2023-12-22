@@ -278,7 +278,7 @@ void ProcessConfigLine( char* ptr, char* equalsChar, _CONFIG* config )
       FreeIfAllocated( &(config->urlEnvVar) );
       config->urlEnvVar = strdup( value );
       }
-    else if( strcasecmp( variable, "KEY" )==0 )
+    else if( strcasecmp( variable, "SESSION_COOKIE_ENCRYPTION_KEY" )==0 )
       {
       uint8_t binaryKey[100];
       memset( binaryKey, 0, sizeof(binaryKey) );
@@ -331,7 +331,7 @@ void PrintConfig( FILE* f, _CONFIG* config )
   if( memcmp( config->key, defaultKey, AES_KEYLEN )!=0 )
     {
     char key_ascii[100];
-    fprintf( f, "KEY=%s\n", EscapeString( config->key, AES_KEYLEN, key_ascii, sizeof( key_ascii ) ) );
+    fprintf( f, "SESSION_COOKIE_ENCRYPTION_KEY=%s\n", EscapeString( config->key, AES_KEYLEN, key_ascii, sizeof( key_ascii ) ) );
     }
 
   for( _PASSWORD_FILE* pf = config->passwordFiles; pf!=NULL; pf=pf->next )
