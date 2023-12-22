@@ -11,6 +11,7 @@ char defaultKey[] =
 void SetDefaults( _CONFIG* config )
   {
   memset( config, 0, sizeof(_CONFIG) );
+
   memcpy( config->key, defaultKey, AES_KEYLEN );
   config->userEnvVar = strdup( DEFAULT_USER_ENV_VAR );
   config->sessionCookieName = strdup( COOKIE_ID );

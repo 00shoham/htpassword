@@ -23,16 +23,20 @@ int main( int argc, char** argv )
     if( ( strncasecmp( q, "api&", 4 )==0 || strncasecmp( q, "api/", 4 )==0 )
         && q[4]!=0 )
       {
-      fputs( "Content-Type: application/json\r\n\r\n", stdout );
-      fflush(stdout);
-
       inCGI = 2;
 
       /* char* whoAmI = ExtractUserIDOrDie( cm_api, conf->userEnvVar ); */
-      char* whoAmI = ExtractUserIDOrDieEx( cm_ui, NULL, NULL, NULL, NULL, conf->key );
+      char* whoAmI = ExtractUserIDOrDieEx( cm_api,
+                                           conf->userEnvVar, conf->sessionCookieName,
+                                           conf->urlEnvVar, conf->authServiceUrl,
+                                           conf->key );
+
+      fputs( "Content-Type: application/json\r\n\r\n", stdout );
+      fflush(stdout);
 
       CallAPIFunction( conf, whoAmI, q+4 );
       fflush(stdout);
+      FreeConfig( conf );
       exit(0);
       }
     } /* URL had args */
