@@ -278,6 +278,14 @@ void ProcessConfigLine( char* ptr, char* equalsChar, _CONFIG* config )
       FreeIfAllocated( &(config->urlEnvVar) );
       config->urlEnvVar = strdup( value );
       }
+    else if( strcasecmp( variable, "KEY" )==0 )
+      {
+      uint8_t binaryKey[100];
+      memset( binaryKey, 0, sizeof(binaryKey) );
+      UnescapeString( value, binaryKey, sizeof(binaryKey)-1 );
+      memset( config->key, 0, AES_KEYLEN );
+      memcpy( config->key, binaryKey, AES_KEYLEN );
+      }
     else
       {
       /* append this variable to our linked list, for future expansion */
@@ -319,6 +327,12 @@ void PrintConfig( FILE* f, _CONFIG* config )
 
   if( config==NULL )
     Error("Cannot print NULL configuration");
+
+  if( memcmp( config->key, defaultKey, AES_KEYLEN )!=0 )
+    {
+    char key_ascii[100];
+    fprintf( f, "KEY=%s\n", EscapeString( config->key, AES_KEYLEN, key_ascii, sizeof( key_ascii ) ) );
+    }
 
   for( _PASSWORD_FILE* pf = config->passwordFiles; pf!=NULL; pf=pf->next )
     {
