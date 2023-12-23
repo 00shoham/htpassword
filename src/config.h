@@ -31,6 +31,8 @@ typedef struct _config
   char* sessionCookieName;
   char* authServiceUrl;
   char* urlEnvVar;
+  char* remoteAddrEnvVar; /* QQQ config to load these */
+  char* userAgentEnvVar;
   } _CONFIG;
 
 void SetDefaults( _CONFIG* config );
