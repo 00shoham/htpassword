@@ -13,6 +13,7 @@ void SetDefaults( _CONFIG* config )
   memset( config, 0, sizeof(_CONFIG) );
 
   memcpy( config->key, defaultKey, AES_KEYLEN );
+  config->myCSS = strdup( DEFAULT_MY_CSS );
   config->userEnvVar = strdup( DEFAULT_USER_ENV_VAR );
   config->sessionCookieName = strdup( DEFAULT_ID_OF_AUTH_COOKIE );
   config->authServiceUrl = strdup( DEFAULT_AUTH_URL );
@@ -23,6 +24,8 @@ void FreeConfig( _CONFIG* config )
   {
   if( config==NULL )
     return;
+
+  FreeIfAllocated( &( config->myCSS) );
 
   for( _PASSWORD_FILE* pf = config->passwordFiles; pf!=NULL; )
     {
@@ -104,7 +107,12 @@ void ProcessConfigLine( char* ptr, char* equalsChar, _CONFIG* config )
 
     config->list = NewTagValue( variable, value, config->list, 1 );
 
-    if( strcasecmp( variable, "PASSWORD_FILE" )==0 )
+    if( strcasecmp( variable, "MY_CSS" )==0 )
+      {
+      FreeIfAllocated( &( config->myCSS) );
+      config->myCSS = strdup( value );
+      }
+    else if( strcasecmp( variable, "PASSWORD_FILE" )==0 )
       {
       config->passwordFiles = AddPasswordFile( value, config->passwordFiles );
       }
@@ -328,6 +336,10 @@ void PrintConfig( FILE* f, _CONFIG* config )
 
   if( config==NULL )
     Error("Cannot print NULL configuration");
+
+  if( NOTEMPTY( config->myCSS )
+      && strcmp( config->myCSS, DEFAULT_MY_CSS )!=0 )
+    fprintf( f, "MY_CSS=%s\n", config->myCSS );
 
   if( memcmp( config->key, defaultKey, AES_KEYLEN )!=0 )
     {
@@ -582,6 +594,9 @@ void ValidateConfig( _CONFIG* config )
 
   if( config->passwordFiles==NULL )
     Error( "Must specify at least one PASSWORD_FILE in config" );
+
+  if( EMPTY( config->myCSS ) )
+    Error( "MY_CSS must be set (or left as default) in config" );
 
   for( _PASSWORD_FILE* pf=config->passwordFiles; pf!=NULL; pf=pf->next )
     {

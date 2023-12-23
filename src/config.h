@@ -24,6 +24,8 @@ typedef struct _config
   /* the meat of it */
   _PASSWORD_FILE* passwordFiles;
 
+  char* myCSS;
+
   char* userEnvVar;
   uint8_t key[AES_KEYLEN];
   char* sessionCookieName;

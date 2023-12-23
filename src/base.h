@@ -6,6 +6,8 @@
 struct _config;
 typedef struct _config _CONFIG;
 
+#define DEFAULT_MY_CSS "/htpassword/ui.css"
+
 #include "password-file.h"
 #include "config.h"
 #include "password-history.h"
