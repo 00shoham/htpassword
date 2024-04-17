@@ -37,7 +37,6 @@ int main( int argc, char** argv )
                                            conf->myCSS );
 
       fputs( "Content-Type: application/json\r\n\r\n", stdout );
-      fflush(stdout);
       printedContentType = 1;
 
       CallAPIFunction( conf, whoAmI, q+4 );
