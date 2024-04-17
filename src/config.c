@@ -13,21 +13,20 @@ void SetDefaults( _CONFIG* config )
   memset( config, 0, sizeof(_CONFIG) );
 
   memcpy( config->key, defaultKey, AES_KEYLEN );
-  config->myCSS = strdup( DEFAULT_MY_CSS );
-  config->userEnvVar = strdup( DEFAULT_USER_ENV_VAR );
-  config->sessionCookieName = strdup( DEFAULT_ID_OF_AUTH_COOKIE );
+
   config->authServiceUrl = strdup( DEFAULT_AUTH_URL );
-  config->urlEnvVar = strdup( DEFAULT_REQUEST_URI_ENV_VAR );
+  config->myCSS = strdup( DEFAULT_MY_CSS );
   config->remoteAddrEnvVar = strdup( DEFAULT_REMOTE_ADDR );
+  config->sessionCookieName = strdup( DEFAULT_ID_OF_AUTH_COOKIE );
+  config->urlEnvVar = strdup( DEFAULT_REQUEST_URI_ENV_VAR );
   config->userAgentEnvVar = strdup( DEFAULT_USER_AGENT_VAR );
+  config->userEnvVar = strdup( DEFAULT_USER_ENV_VAR );
   }
 
 void FreeConfig( _CONFIG* config )
   {
   if( config==NULL )
     return;
-
-  FreeIfAllocated( &( config->myCSS) );
 
   for( _PASSWORD_FILE* pf = config->passwordFiles; pf!=NULL; )
     {
@@ -61,12 +60,13 @@ void FreeConfig( _CONFIG* config )
   FreeTagValue( config->includes );
   FreeTagValue( config->list );
 
-  FreeIfAllocated( &(config->userEnvVar) );
-  FreeIfAllocated( &(config->sessionCookieName) );
   FreeIfAllocated( &(config->authServiceUrl) );
-  FreeIfAllocated( &(config->urlEnvVar) );
+  FreeIfAllocated( &(config->myCSS) );
   FreeIfAllocated( &(config->remoteAddrEnvVar) );
+  FreeIfAllocated( &(config->sessionCookieName) );
+  FreeIfAllocated( &(config->urlEnvVar) );
   FreeIfAllocated( &(config->userAgentEnvVar) );
+  FreeIfAllocated( &(config->userEnvVar) );
 
   free( config );
   }

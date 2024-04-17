@@ -25,14 +25,14 @@ typedef struct _config
   _PASSWORD_FILE* passwordFiles;
 
   char* myCSS;
-
-  char* userEnvVar;
-  uint8_t key[AES_KEYLEN];
-  char* sessionCookieName;
   char* authServiceUrl;
-  char* urlEnvVar;
   char* remoteAddrEnvVar; /* QQQ config to load these */
+  char* sessionCookieName;
+  char* urlEnvVar;
   char* userAgentEnvVar;
+  char* userEnvVar;
+
+  uint8_t key[AES_KEYLEN];
   } _CONFIG;
 
 void SetDefaults( _CONFIG* config );
